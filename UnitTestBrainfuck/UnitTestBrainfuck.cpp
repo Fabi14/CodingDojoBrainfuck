@@ -41,5 +41,13 @@ namespace UnitTestBrainfuck
 
 			Assert::AreEqual(static_cast<unsigned char>(1u), *std::next(memory.get().begin()));
 		}
+
+		TEST_METHOD(TestDecrementTheDataPointerAndIncrement)
+		{
+			std::string codeToExecute{ "<+" };
+			BrainfuckInterpreter::Memory memory{ BrainfuckInterpreter::run(codeToExecute) };
+
+			Assert::AreEqual(static_cast<unsigned char>(1u), *std::next(memory.get().end(),-1));
+		}
 	};
 }
