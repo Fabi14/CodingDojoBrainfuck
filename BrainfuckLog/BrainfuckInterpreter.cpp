@@ -10,6 +10,10 @@ auto BrainfuckInterpreter::run(std::string const& code) -> Memory
         {
             (*memory.getIterator())++;
         }
+        else if (c == '-')
+        {
+            (*memory.getIterator())--;
+        }
     }
     return memory;
 }
