@@ -22,9 +22,5 @@ public:
 	};
 
 	static Memory run(std::string const& code);
-
-	
-
-
 };
 
