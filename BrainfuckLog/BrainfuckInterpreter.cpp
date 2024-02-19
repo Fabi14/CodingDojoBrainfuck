@@ -3,5 +3,13 @@
 
 auto BrainfuckInterpreter::run(std::string const& code) -> Memory
 {
-    return {};
+    Memory memory;
+    for (const auto c : code)
+    {
+        if (c == '+')
+        {
+            (*memory.getIterator())++;
+        }
+    }
+    return memory;
 }
