@@ -13,9 +13,13 @@ public:
 		{
 			return *memory.get();
 		}
-		MemoryIntern::iterator getIterator()
+		MemoryIntern::iterator begin()
 		{
 			return memory.get()->begin();
+		}
+		MemoryIntern::iterator end()
+		{
+			return memory.get()->end();
 		}
 	private:
 		std::unique_ptr<MemoryIntern> memory{ std::make_unique<MemoryIntern>() };
