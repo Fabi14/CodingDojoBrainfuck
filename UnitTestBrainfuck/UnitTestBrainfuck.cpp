@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CppUnitTest.h"
+#include "../BrainfuckLog/BrainfuckInterpreter.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -15,7 +16,7 @@ namespace UnitTestBrainfuck
 			BrainfuckInterpreter::Memory memory{ BrainfuckInterpreter::run(codeToExecute) };
 
 			BrainfuckInterpreter::Memory expectedMemoryState{};
-			Assert::AreEqual(expectedMemoryState, memory);
+			Assert::IsTrue(expectedMemoryState.get() == memory.get());
 		}
 	};
 }
