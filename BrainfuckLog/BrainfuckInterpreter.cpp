@@ -4,15 +4,20 @@
 auto BrainfuckInterpreter::run(std::string const& code) -> Memory
 {
     Memory memory;
+    auto memoryPointer{ memory.getIterator() };
     for (const auto c : code)
     {
         if (c == '+')
         {
-            (*memory.getIterator())++;
+            (*memoryPointer)++;
         }
         else if (c == '-')
         {
-            (*memory.getIterator())--;
+            (*memoryPointer)--;
+        }
+        else if (c == '>')
+        {
+            memoryPointer++;
         }
     }
     return memory;
