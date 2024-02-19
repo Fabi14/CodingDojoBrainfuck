@@ -18,6 +18,10 @@ auto BrainfuckInterpreter::run(std::string const& code) -> Memory
         else if (c == '>')
         {
             memoryPointer++;
+            if (memoryPointer == memory.end())
+            {
+                memoryPointer = memory.begin();
+            }
         }
         else if (c == '<')
         {
