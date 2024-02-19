@@ -18,5 +18,12 @@ namespace UnitTestBrainfuck
 			BrainfuckInterpreter::Memory expectedMemoryState{};
 			Assert::IsTrue(expectedMemoryState.get() == memory.get());
 		}
+		TEST_METHOD(TestIncrementFirstMemoryPosition)
+		{
+			std::string codeToExecute{ "+" };
+			BrainfuckInterpreter::Memory memory{ BrainfuckInterpreter::run(codeToExecute) };
+
+			Assert::AreEqual(static_cast<unsigned char>(1u), memory.get().front());
+		}
 	};
 }
