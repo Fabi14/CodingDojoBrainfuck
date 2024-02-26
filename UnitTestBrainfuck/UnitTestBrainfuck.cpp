@@ -57,5 +57,20 @@ namespace UnitTestBrainfuck
 
 			Assert::AreEqual(static_cast<unsigned char>(1u), memory.get().front());
 		}
+
+		TEST_METHOD(TestDataInputAndOutput)
+		{
+			std::string codeToExecute{ ".," };
+			std::stringstream input;
+			input << 'a';
+			std::stringstream output;
+			BrainfuckInterpreter::InputOutput inOut
+			{
+				input, output
+			}
+			BrainfuckInterpreter::Memory memory{ BrainfuckInterpreter::run(inOut, codeToExecute) };
+
+			Assert::AreEqual(std::string('a'), output.str());
+		}
 	};
 }

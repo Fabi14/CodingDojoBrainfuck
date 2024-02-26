@@ -25,6 +25,12 @@ public:
 		std::unique_ptr<MemoryIntern> memory{ std::make_unique<MemoryIntern>() };
 	};
 
+	struct InputOutput
+	{
+		std::istream& input;
+		std::ostream& output;
+	};
+
 	static Memory run(std::string const& code);
 };
 
