@@ -72,5 +72,13 @@ namespace UnitTestBrainfuck
 
 			Assert::AreEqual(std::string("a"), output.str());
 		}
+
+		TEST_METHOD(TestLoop)
+		{
+			std::string codeToExecute{ "+++[>++<]" };
+			BrainfuckInterpreter::Memory memory{ BrainfuckInterpreter::run(codeToExecute) };
+			Assert::AreEqual(static_cast<unsigned char>(0u), memory.get().front());
+			Assert::AreEqual(static_cast<unsigned char>(6u), *std::next(memory.get().begin()));
+		}
 	};
 }
