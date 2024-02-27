@@ -7,6 +7,9 @@ auto BrainfuckInterpreter::run(std::string const& code, const InputOutput& inOut
 {
     Memory memory;
     auto memoryPointer{ memory.begin() };
+    auto codePointer{ code.begin() };
+
+    std::function<void()> runLoop;
 
     std::map<char, std::function<void()>> commands
     {
@@ -31,12 +34,28 @@ auto BrainfuckInterpreter::run(std::string const& code, const InputOutput& inOut
             }
         },
         { '.', [&] { inOut.output << (*memoryPointer); } },
-        { ',', [&] { inOut.input >> (*memoryPointer); } }
+        { ',', [&] { inOut.input >> (*memoryPointer); } },
+        { '[', [&] { runLoop(); }},
+        { ']', [&] { } }
     };
 
-    for (const auto c : code)
+    runLoop = [&]()
+        {
+            ++codePointer; // '[' wurde schon behandelt
+            auto beginOfLoop = codePointer;
+            while ((*memoryPointer) != 0)
+            {
+                codePointer = beginOfLoop; //jump to begin of Loop
+                for (; (*codePointer) != ']'; ++codePointer)
+                {
+                    std::invoke(commands.at(*codePointer));
+                }
+            }
+        };
+
+    for (; codePointer < code.end(); ++codePointer)
     {
-        std::invoke(commands.at(c));
+        std::invoke(commands.at(*codePointer));
     }
     return memory;
 }
