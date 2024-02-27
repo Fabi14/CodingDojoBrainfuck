@@ -3,7 +3,7 @@
 #include <map>
 #include <functional>
 
-auto BrainfuckInterpreter::run(std::string const& code) -> Memory
+auto BrainfuckInterpreter::run(std::string const& code, const InputOutput& inOut) -> Memory
 {
     Memory memory;
     auto memoryPointer{ memory.begin() };
@@ -29,7 +29,9 @@ auto BrainfuckInterpreter::run(std::string const& code) -> Memory
                 }
                 memoryPointer--;
             }
-        }
+        },
+        { '.', [&] { inOut.output << (*memoryPointer); } },
+        { ',', [&] { inOut.input >> (*memoryPointer); } }
     };
 
     for (const auto c : code)

@@ -60,17 +60,17 @@ namespace UnitTestBrainfuck
 
 		TEST_METHOD(TestDataInputAndOutput)
 		{
-			std::string codeToExecute{ ".," };
+			std::string codeToExecute{ ",." };
 			std::stringstream input;
 			input << 'a';
 			std::stringstream output;
 			BrainfuckInterpreter::InputOutput inOut
 			{
 				input, output
-			}
-			BrainfuckInterpreter::Memory memory{ BrainfuckInterpreter::run(inOut, codeToExecute) };
+			};
+			BrainfuckInterpreter::Memory memory{ BrainfuckInterpreter::run(codeToExecute, inOut) };
 
-			Assert::AreEqual(std::string('a'), output.str());
+			Assert::AreEqual(std::string("a"), output.str());
 		}
 	};
 }

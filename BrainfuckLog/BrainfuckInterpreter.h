@@ -2,6 +2,7 @@
 #include <memory>
 #include <array>
 #include <string>
+#include <iostream>
 
 class BrainfuckInterpreter
 {
@@ -31,6 +32,6 @@ public:
 		std::ostream& output;
 	};
 
-	static Memory run(std::string const& code);
+	static Memory run( std::string const& code, const InputOutput& inOut = {std::cin,std::cout});
 };
 
